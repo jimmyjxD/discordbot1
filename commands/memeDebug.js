@@ -6,9 +6,9 @@ class PingCommand extends Command {
     constructor(client, cs)
     {
         super(client, {
-            name: "meme",
-            memberName: "meme",
-            description: "sends a meme"
+            name: "memeDebug",
+            memberName: "memeDebug",
+            description: "debugs a meme"
         });
 
         this.cs = cs;
@@ -23,10 +23,14 @@ class PingCommand extends Command {
             content = data;
             var memes = JSON.parse(content);
         });
-		
+		try{
 		msg.channel.send (  /*memes[rand]*/ "memes", {
-			file : memes[Math.floor(Math.random() * memes.length)]
+			file : memes[parseInt(args[0])]
 		}); 
+	}
+	catch{
+		msg.channel.send("can't show that meme.")
+	}
     }
 }
 
